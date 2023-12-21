@@ -1,13 +1,10 @@
 #include <iostream>
 #include <string>
-#include <limits>
 
 char alpha[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 std::string Input;
 int Key;
-
-void checkBounds();
 
 int find(const char arr[], char seek)
 {
@@ -29,7 +26,7 @@ int checkBounds(int cPos, bool decode)
         }
         else
         {
-            return find(alpha, Input[cPos] + Key);
+            return find(alpha, Input[cPos]) + Key;
         }
     }
     else
@@ -40,27 +37,40 @@ int checkBounds(int cPos, bool decode)
         }
         else
         {
-            return find(alpha, Input[cPos]) + (Key * -1);
+            return find(alpha, Input[cPos]) - Key;
         }
     }
 }
 
 std::string change(bool decode)
 {
-    char message[Input.length()];
+    std::string message;
     for (int i = 0; i < Input.length(); i++)
     {
-        int specialKey = checkBounds(i, decode);
         if (Input[i] == ' ')
         {
-            message[i] = ' ';
+            message += ' ';
             continue;
         }
-        message[i] = alpha[specialKey];
+
+        int specialKey = checkBounds(i, decode);
+        message += islower(Input[i]) ? alpha[specialKey] : tolower(alpha[specialKey]);
     }
     return message;
 }
 
+
+
+void bruteForce()
+{
+    for (int i = -25; i <= 25; i++)
+    {
+        Key = i;
+        std::string Str = change(true).substr(0, Input.length());
+        std::cout << "Message-> " << Str
+                  << " : Key-> " << Key << '\n';
+    }
+}
 void displayMenu()
 {
     std::cout << std::endl
@@ -74,34 +84,29 @@ void displayMenu()
 void encode()
 {
     std::cout << "Enter your Message to encode: ";
-    std::cin.ignore(); // Ignore the newline character from previous input
-    std::getline(std::cin, Input);
+    std::getline(std::cin >> std::ws, Input);
 
     std::cout << "What is your Caesar key (-25 to 25): ";
     std::cin >> Key;
 
-    std::string Str = change(false).substr(0, Input.length());
+    std::string Str = change(false);
 
-    std::cout << "Message-> " << Str
-              << " : Key-> " << Key << '\n';
+    std::cout << "Message-> " << Str << " : Key-> " << Key << '\n';
 }
 
 void decode()
 {
     std::cout << "Enter your Message to decode: ";
-    std::cin.ignore(); // Ignore the newline character from previous input
-    std::getline(std::cin, Input);
+    std::getline(std::cin >> std::ws, Input);
 
-    std::cout << std::endl
-              << "What is your Caesar key (-25 to 25): ";
+    std::cout << "What is your Caesar key (-25 to 25) Key 0 to brute force: ";
     std::cin >> Key;
-    std::cout << std::endl;
 
-    std::string Str = change(true).substr(0, Input.length());
+    std::string Str = (Key == 0) ? change(true) : change(true).substr(0, Input.length());
 
-    std::cout << "Message-> " << Str
-              << " : Key-> " << Key << '\n';
+    std::cout << "Message-> " << Str << " : Key-> " << Key << '\n';
 }
+
 
 int main()
 {

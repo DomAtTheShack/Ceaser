@@ -1,8 +1,8 @@
-# Install script for directory: /home/dominichann/CLionProjects/Ceaser
+# Install script for directory: C:/Users/ctehannd67/CLionProjects/Ceaser
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Ceaser")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,11 +27,6 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
-endif()
-
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
@@ -39,29 +34,23 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "C:/Users/ctehannd67/AppData/Local/JetBrains/CLion 2023.2.2/bin/mingw/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/usr/local/bin/Ceaser" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/bin/Ceaser")
-    file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/usr/local/bin/Ceaser"
-         RPATH "")
-  endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/local/bin/Ceaser")
+   "C:/users/ctehannd67/Downloads/Ceaser.exe")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/bin" TYPE EXECUTABLE FILES "/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/Ceaser")
-  if(EXISTS "$ENV{DESTDIR}/usr/local/bin/Ceaser" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/bin/Ceaser")
+  file(INSTALL DESTINATION "C:/users/ctehannd67/Downloads" TYPE EXECUTABLE FILES "C:/Users/ctehannd67/CLionProjects/Ceaser/cmake-build-debug/Ceaser.exe")
+  if(EXISTS "$ENV{DESTDIR}/C:/users/ctehannd67/Downloads/Ceaser.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/C:/users/ctehannd67/Downloads/Ceaser.exe")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/local/bin/Ceaser")
+      execute_process(COMMAND "C:/Users/ctehannd67/AppData/Local/JetBrains/CLion 2023.2.2/bin/mingw/bin/strip.exe" "$ENV{DESTDIR}/C:/users/ctehannd67/Downloads/Ceaser.exe")
     endif()
   endif()
 endif()
@@ -74,5 +63,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/ctehannd67/CLionProjects/Ceaser/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
