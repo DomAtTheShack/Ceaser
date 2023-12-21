@@ -7,24 +7,44 @@ std::string Input;
 int Key;
 
 
+void checkBounds();
+
 int find(const char arr[], char seek)
 {
-    for (int i = 0; i < 26; ++i)
+    for (int i = 0; i < 26; i++)
     {
         if (arr[i] == (char)tolower(seek)) return i;
     }
     return -1;
 }
-std::string change(const std::string& str, int key, bool decode)
+int checkBounds(int cPos, bool decode)
 {
-
-    char message[str.length() + 1];
-    for(int i = 0; i < str.length(); i ++)
+    if(decode)
     {
-        if(decode)
-            message[i] = alpha[find(alpha,str[i]) + key];
-        else
-            message[i] = alpha[find(alpha,str[i]) + (key*-1)];
+        if (find(alpha, Input[cPos]) + (Key) > 25)
+        {
+            return (find(alpha,Input[cPos]) + Key) - 26;
+        }else
+        {
+            return find(alpha,Input[cPos] + Key);
+        }
+    }else {
+        if (find(alpha, Input[cPos]) + (Key*-1) < 0)
+        {
+          return (find(alpha,Input[cPos]) + (Key*-1)) + 26;
+        }else
+        {
+            return find(alpha,Input[cPos]) + (Key*-1);
+        }
+    }
+}
+std::string change(bool decode)
+{
+    char message[Input.length()];
+    for(int i = 0; i < Input.length(); i ++)
+    {
+        int specialKey = checkBounds(i, decode);
+        message[i] = alpha[specialKey];
     }
     return message;
 }
@@ -37,22 +57,25 @@ void displayMenu()
 void encode()
 {
     std::cout << "Enter your Message to encode: ";
+    Input = "";
     std::cin >> Input;
     std::cout << std::endl << "What is your Ceaser key(-25-25): ";
     std::cin >> Key;
     std::cout << std::endl;
-    std::cout << "Message-> " << change(Input, Key, false)
-    << " : Key-> " << Key << '\n';
+    std::string Str = change(false);
+    std::cout << "Message-> " << Str
+              << " : Key-> " << Key << '\n';
 }
 void decode()
 {
     std::cout << "Enter your Message to decode: ";
+    Input = "";
     std::cin >> Input;
     std::cout << std::endl << "What is your Ceaser key(-25-25): ";
     std::cin >> Key;
-    std::cout << std::endl;
-    std::cout << "Message-> " << change(Input, Key, true)
-    << " : Key-> " << Key << '\n';
+    std::string Str = (change(true)).substr();
+    std::cout << "Message-> " << Str
+              << " : Key-> " << Key << '\n';
 }
 
 
