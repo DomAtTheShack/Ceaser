@@ -1,3 +1,7 @@
-C:/Users/ctehannd67/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/Ceaser.dir
-C:/Users/ctehannd67/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/ctehannd67/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/Ceaser.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/list_install_components.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/install.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/install/local.dir
+/home/dominichann/CLionProjects/Ceaser/cmake-build-debug/CMakeFiles/install/strip.dir
