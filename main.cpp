@@ -18,28 +18,28 @@ int find(const char arr[], char seek)
 
 int checkBounds(int cPos, bool decode)
 {
+    // Calculate the new position.
+    int newPos;
     if (decode)
     {
-        if (find(alpha, Input[cPos]) + (Key) > 25)
-        {
-            return (find(alpha, Input[cPos]) + Key) - 26;
-        }
-        else
-        {
-            return find(alpha, Input[cPos]) + Key;
-        }
+        newPos = find(alpha, Input[cPos]) - Key;
     }
     else
     {
-        if (find(alpha, Input[cPos]) + (Key * -1) < 0)
-        {
-            return (find(alpha, Input[cPos]) + (Key * -1)) + 26;
-        }
-        else
-        {
-            return find(alpha, Input[cPos]) - Key;
-        }
+        newPos = find(alpha, Input[cPos]) + Key;
     }
+
+    // Use modulus operation to keep the newPos within bounds.
+    if (newPos < 0)
+    {
+        newPos += 26;
+    }
+    else
+    {
+        newPos %= 26;
+    }
+
+    return newPos;
 }
 
 std::string change(bool decode)
@@ -81,6 +81,18 @@ void displayMenu()
               << "Choose: " << std::endl;
 }
 
+void checkKey()
+{
+    while(Key == 0 || Key > 25 || Key < -25)
+    {
+        std::cout << "Invalid Key!" << '\n';
+        std::cin.clear();
+        std::cout << "Enter new key: ";
+        std::cin >> Key;
+        std::cout << '\n';
+    }
+}
+
 void encode()
 {
     std::cout << "Enter your Message to encode: ";
@@ -88,6 +100,8 @@ void encode()
 
     std::cout << "What is your Caesar key (-25 to 25): ";
     std::cin >> Key;
+
+    checkKey();
 
     std::string Str = change(false);
 
@@ -102,7 +116,15 @@ void decode()
     std::cout << "What is your Caesar key (-25 to 25) Key 0 to brute force: ";
     std::cin >> Key;
 
-    std::string Str = (Key == 0) ? change(true) : change(true).substr(0, Input.length());
+    if(Key == 0)
+    {
+        bruteForce();
+        return;
+    }
+
+    checkKey();
+
+    std::string Str = change(true);
 
     std::cout << "Message-> " << Str << " : Key-> " << Key << '\n';
 }
